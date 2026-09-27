@@ -1,68 +1,56 @@
-# IBM Hackathon GitHub Project Template
+# MarketMind
 
-This GitHub project template is for IBM Hackathon projects. It includes pre-configured security files to help prevent accidental credential commits and potential account suspension during the hackathon.
+**Stock Price Trend Prediction using LSTM Networks** — a full-stack web app that fetches historical stock data, trains/serves an LSTM model, and visualizes short-horizon price trend predictions.
 
-## 🚀 Quick Start
+> ⚠️ Educational project. Not financial advice.
 
-1. **Use this template to create your project:**
-   - Click "Use this template" button above and select "Create a new repository"
-   - Name your repository
-   - Click "Create repository"
+## Docs
 
-2. **Clone your new repository:**
+- [Problem Statement](docs/PROBLEM_STATEMENT.md)
+- [Solution](docs/SOLUTION.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Antigravity project context](CONTEXT.md) — read this first if you're an agent working in this repo
 
-   ```bash
-   git clone https://github.com/HACKATHON-ORG/your-repo-name.git
-   cd your-repo-name
-   ```
+## Quick start
 
-3. **Set up environment variables:**
+### 1. Backend
 
-   ```bash
-   # Copy the example file
-   cp .env.example .env
+```bash
+cd backend
+python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install -r requirements.txt
 
-   # Edit .env with your actual credentials
-   # Use your preferred editor (nano, vim, code, etc.)
-   nano .env
-   ```
+# Train a model for a ticker (creates backend/data/<TICKER>_lstm.h5)
+python train_model.py --ticker AAPL --epochs 25
 
-4. **Verify .gitignore is working:**
+# Run the API
+uvicorn app.main:app --reload --port 8000
+```
 
-   ```bash
-   # This should NOT show .env file
-   git status
+API docs will be live at `http://localhost:8000/docs`.
 
-   # This should confirm .env is ignored
-   git check-ignore -v .env
-   ```
+### 2. Frontend
 
-5. **Start developing!**
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-## 🔒 Security Features
+Open `http://localhost:5173`.
 
-This template includes:
+## Project structure
 
-- **`.gitignore`** - Prevents committing credentials and live session files
-- **`.bobignore`** - Prevents AI assistants from logging credentials
-- **`.env.example`** - Template for your environment variables
+See [CONTEXT.md](CONTEXT.md#3-repository-layout).
 
-## 📋 Before Every Commit
+## Tech stack
 
-Always run this checklist:
+Python · TensorFlow/Keras · FastAPI · React · Vite · Recharts · yfinance
 
-- [ ] Reviewed `git diff` for sensitive data
-- [ ] No hardcoded API keys or passwords
-- [ ] `.env` file is NOT in staged changes
-- [ ] No files with "credential" or "secret" in name
-- [ ] Used environment variables for all credentials
+## Status
 
-## 🆘 Need Help?
+MVP scaffold — single-ticker trend prediction, no auth, SQLite for caching.
 
-- Read [SECURITY.md](SECURITY.MD) for detailed guidelines
-- Contact hackathon support through mentor channel
-- Ask in the hackathon Slack workspace
+## License
 
----
-
-**Remember:** Security is everyone's responsibility. When in doubt, ask for help!
+MIT 
