@@ -1,4 +1,4 @@
-# StockMarket
+# StockMind
 
 **Stock Price Trend Prediction using LSTM Networks** — a full-stack web app that fetches historical stock data, trains/serves an LSTM model, and visualizes short-horizon price trend predictions.
 
